@@ -7,19 +7,12 @@ import { formatTime } from "@/lib/utils";
 import { useDriverStore, useLocationStore } from "@/store";
 import Payment from "@/components/Payment";
 
-
-
-import { StripeProvider } from '@stripe/stripe-react-native';
-import { useEffect, useState } from "react";
-
-
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 const BookRide = () => {
   const { user } = useUser();
   const { userAddress, destinationAddress } = useLocationStore();
   const { drivers, selectedDriver } = useDriverStore();
-
-
 
   const driverDetails = drivers?.filter(
     (driver) => +driver.id === selectedDriver,
@@ -31,7 +24,7 @@ const BookRide = () => {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="myapp" // required for 3D Secure and bank redirects
     >
-      <RideLayout title="Book Ride" snapPoints={['78%']}>
+      <RideLayout title="Book Ride" snapPoints={["78%"]}>
         <>
           <Text className="text-xl font-JakartaSemiBold mb-3">
             Ride Information
@@ -61,8 +54,7 @@ const BookRide = () => {
             </View>
           </View>
 
-          <View
-            className="flex flex-col w-full items-start justify-center py-3 px-5 rounded-3xl bg-general-600 mt-5">
+          <View className="flex flex-col w-full items-start justify-center py-3 px-5 rounded-3xl bg-general-600 mt-5">
             <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
               <Text className="text-lg font-JakartaRegular">Ride Price</Text>
               <Text className="text-lg font-JakartaRegular text-[#0CC25F]">
@@ -86,8 +78,7 @@ const BookRide = () => {
           </View>
 
           <View className="flex flex-col w-full items-start justify-center mt-5">
-            <View
-              className="flex flex-row items-center justify-start mt-3 border-t border-b border-general-700 w-full py-3">
+            <View className="flex flex-row items-center justify-start mt-3 border-t border-b border-general-700 w-full py-3">
               <Image source={icons.to} className="w-6 h-6" />
               <Text className="text-lg font-JakartaRegular ml-2">
                 {userAddress}
@@ -102,7 +93,7 @@ const BookRide = () => {
             </View>
           </View>
 
-          <Payment 
+          <Payment
             fullName={user?.fullName!}
             email={user?.emailAddresses[0]?.emailAddress!}
             amount={driverDetails?.price!}
